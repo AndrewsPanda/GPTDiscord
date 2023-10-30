@@ -476,13 +476,13 @@ class EnvService:
             )
     
     @staticmethod
-    def get_openai_base():
+    def get_openai_api_base():
         try:
-            openai_base = os.getenv("OPENAI_BASE")
-            return openai_base
+            openai_api_base = os.getenv("OPENAI_API_BASE")
+            return openai_api_base
         except Exception:
             raise ValueError(
-                "OPENAI_TOKEN is not defined properly in the environment file! The bot cannot start without this token."
+                "OPENAI_BASE_URL is not defined properly in the environment file! The bot cannot start without this token."
             )
 
     @staticmethod

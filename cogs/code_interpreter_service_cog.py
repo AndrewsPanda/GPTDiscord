@@ -64,6 +64,12 @@ OPENAI_API_KEY = EnvService.get_openai_token()
 # Set the environment
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 openai.api_key = os.environ["OPENAI_API_KEY"]
+
+OPENAI_API_BASE = EnvService.get_openai_api_base()
+# Set the environment
+os.environ["OPENAI_API_BASE"] = OPENAI_API_BASE
+openai.api_base = os.environ["OPENAI_API_BASE"]
+
 GOOGLE_API_KEY = EnvService.get_google_search_api_key()
 GOOGLE_SEARCH_ENGINE_ID = EnvService.get_google_search_engine_id()
 
@@ -484,7 +490,7 @@ class CodeInterpreterService(discord.Cog, name="CodeInterpreterService"):
                 )
             )
 
-        llm = ChatOpenAI(model=model, temperature=0, openai_api_key=OPENAI_API_KEY)
+        llm = ChatOpenAI(model=model, temperature=0, openai_api_key=OPENAI_API_KEY, openai_api_base=OPENAI_API_BASE)
 
         memory = ConversationSummaryBufferMemory(
             memory_key="memory",
