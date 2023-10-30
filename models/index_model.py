@@ -246,6 +246,7 @@ class Index_handler:
     def __init__(self, bot, usage_service):
         self.bot = bot
         self.openai_key = os.getenv("OPENAI_TOKEN")
+        self.openai_base = os.getenv("OPENAI_API_BASE")
         self.index_storage = defaultdict(IndexData)
         self.loop = asyncio.get_running_loop()
         self.usage_service = usage_service
@@ -566,6 +567,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         type_to_suffix_mappings = {
             "text/plain": ".txt",
@@ -667,6 +669,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         response = await ctx.respond(embed=EmbedStatics.build_index_progress_embed())
         try:
@@ -756,6 +759,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         response = await ctx.respond(embed=EmbedStatics.build_index_progress_embed())
         try:
@@ -845,6 +849,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         try:
             document = await self.load_data(
@@ -877,6 +882,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         try:
             if server:
@@ -1063,6 +1069,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         try:
             channel_ids: List[int] = []
@@ -1116,6 +1123,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         llm_predictor = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name=model))
 
@@ -1270,6 +1278,7 @@ class Index_handler:
         else:
             os.environ["OPENAI_API_KEY"] = user_api_key
         openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_base = os.environ["OPENAI_API_BASE"]
 
         if not self.index_storage[ctx.user.id].has_indexes(ctx.user.id):
             await ctx.respond(
