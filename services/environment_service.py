@@ -474,6 +474,16 @@ class EnvService:
             raise ValueError(
                 "OPENAI_TOKEN is not defined properly in the environment file! The bot cannot start without this token."
             )
+    
+    @staticmethod
+    def get_openai_base():
+        try:
+            openai_base = os.getenv("OPENAI_BASE")
+            return openai_base
+        except Exception:
+            raise ValueError(
+                "OPENAI_TOKEN is not defined properly in the environment file! The bot cannot start without this token."
+            )
 
     @staticmethod
     def get_wolfram_api_key():
